@@ -18,7 +18,7 @@ class Building
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $Lights;
 
@@ -26,6 +26,11 @@ class Building
      * @ORM\Column(type="string", length=255)
      */
     private $Floor;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Users;
 
     public function getId(): ?int
     {
@@ -52,6 +57,18 @@ class Building
     public function setFloor(string $Floor): self
     {
         $this->Floor = $Floor;
+
+        return $this;
+    }
+
+    public function getUsers(): ?string
+    {
+        return $this->Users;
+    }
+
+    public function setUsers(string $Users): self
+    {
+        $this->Users = $Users;
 
         return $this;
     }
