@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+
+{% for reqs in req %}
+<div class="container">
+    <div class="row">
+        <div class="col-">
+            {{ reqs.Lights}}
+        </div>
+        <div class="col-">
+            {{ reqs.Floor}}
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
