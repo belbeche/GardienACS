@@ -4,19 +4,21 @@
 
 {% block body %}
 
+  <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
+
+<main class="container">
 {% for reqs in req %}
-<div class="container">
-    <div class="row">
-        <div class="col-">
-            {{ reqs.Lights}}
-        </div>
-        <div class="col-">
+
+  <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <p class="pb-3 mb-0 small lh-sm border-bottom">
+            <strong class="d-block text-gray-dark">@{{ reqs.Users }}</strong>
             {{ reqs.Floor}}
+            <a href="{{ path('index', {'id': reqs.id }) }}">Delete</a>
+        </p>
         </div>
     </div>
-</div>
-
 {% endfor %}
+</main>
 
 
 {% endblock %}

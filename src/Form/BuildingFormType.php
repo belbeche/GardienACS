@@ -16,7 +16,9 @@ class BuildingFormType extends AbstractType
     {
         $builder
             ->add('Floor', TextareaType::class)
-            ->add('Lights', CheckboxType::class)
+            ->add('Lights', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('Users')
             ->add('save',SubmitType::class)
         ;

@@ -7,7 +7,9 @@
     <h1>formulaire d'ajout</h1>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.Floor) }}
+    {{ form_row(form.Lights, {attr: {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.Users) }}
     {{ form_end(form) }}
 </div>
 

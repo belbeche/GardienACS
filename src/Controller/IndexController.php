@@ -14,6 +14,7 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
+
         $req = $this->getDoctrine()
             ->getRepository(Building::class)
             ->findAll();
