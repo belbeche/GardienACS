@@ -62,4 +62,22 @@ class BuildingController extends AbstractController
             'id' => $id,
         ]);
     }
+    /**
+     * @Route("/update/{id}", name="update")
+     */
+    public function updateFunction($id, Building $building, Request $request) : Response
+    {
+        $form = $this->createForm(BuildingFormType::class, $building);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('building/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-  <h6 class="border-bottom pb-2 mb-0">Recent updates</h6>
+  <h6 class="border-bottom pb-2 mb-0">Mises à jour récentes</h6>
 
 <main class="container">
 {% for reqs in req %}
@@ -13,7 +13,11 @@
         <p class="pb-3 mb-0 small lh-sm border-bottom">
             <strong class="d-block text-gray-dark">@{{ reqs.Users }}</strong>
             {{ reqs.Floor}}
+            <br>
+            <span> Status:  {{ reqs.Lights }}</span>
+            <br>
             <a href="{{ path('delete', {'id': reqs.id }) }}">Delete</a>
+            <a href="{{ path('update', {'id': reqs.id }) }}">Update</a>
         </p>
         </div>
     </div>
