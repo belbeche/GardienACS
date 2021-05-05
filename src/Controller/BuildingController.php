@@ -24,7 +24,7 @@ class BuildingController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
-
+            $this->addFlash('Success', 'Annonce Ajoutée avec succéss');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
             $entityManager->flush();
@@ -45,7 +45,7 @@ class BuildingController extends AbstractController
 
         if ($annonce != false){
             echo 'suppresion en cours';
-            
+            $this->addFlash('warning', 'Annonce supprimée');
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->merge($building);
             $entityManager->remove($building);
@@ -71,6 +71,7 @@ class BuildingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('Success', 'Annonce modifiée');
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('index');

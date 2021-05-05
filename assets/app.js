@@ -11,3 +11,8 @@ import './styles/bootstrap.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+
+$(document).load(function(event){
+    event.preventDefault();
+});

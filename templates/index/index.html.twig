@@ -9,6 +9,12 @@
 <main class="container">
 {% for reqs in req %}
 
+  {% for message in app.flashes('warning') %}
+      <div class="alert alert-warning">
+          {{ message }}
+      </div>
+  {% endfor %}
+
   <div class="my-3 p-3 bg-body rounded shadow-sm">
         <p class="pb-3 mb-0 small lh-sm border-bottom">
             <strong class="d-block text-gray-dark">@{{ reqs.Users }}</strong>
