@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Building;
 use App\Form\BuildingFormType;
 use App\Repository\BuildingRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class BuildingController extends AbstractController
@@ -42,7 +42,7 @@ class BuildingController extends AbstractController
     public function deleteFunction(Request $request, $id) : Response
     {
         
-        $building = new Building();
+        $form = new Building();
 
         $form = $this->createForm(BuildingFormType::class, $building);
 
