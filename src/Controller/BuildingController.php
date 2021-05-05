@@ -39,17 +39,17 @@ class BuildingController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function deleteFunction($id) : Response
+    public function deleteFunction($id, Building $building) : Response
     {
-        $annonce = false;
+        $annonce = true;
 
-        if ($annonce != true){
-
-            $building = new Building();
+        if ($annonce != false){
+            echo 'suppresion en cours';
+            
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->merge($building);
             $entityManager->remove($building);
             $entityManager->flush();
-            echo 'suppresion en cours';
 
             return $this->redirectToRoute('index');
         } else {
