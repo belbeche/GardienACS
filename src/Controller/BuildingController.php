@@ -8,6 +8,7 @@ use App\Repository\BuildingRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Request as HttpFoundationRequest;
 
 class BuildingController extends AbstractController
@@ -38,17 +39,23 @@ class BuildingController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function deleteFunction($id) : Response
+    public function deleteFunction(Request $request, $id) : Response
     {
-        $building = $this->getDoctrine()
-            ->getRepository(Building::class)
-            ->find($id);
-
-        $building->remove($building);
-        $building->flush();
         
-        return $this->render('building/delete.html.twig', [
-            'id' => $building,
-        ]);
+        $building = new Building();
+
+        $form = $this->createForm(BuildingFormType::class, $building);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($building);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('building/delete.html.twig');
     }
 }
