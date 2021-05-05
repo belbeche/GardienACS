@@ -39,23 +39,27 @@ class BuildingController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function deleteFunction(Request $request, $id) : Response
+    public function deleteFunction($id) : Response
     {
-        
-        $form = new Building();
+        $annonce = false;
 
-        $form = $this->createForm(BuildingFormType::class, $building);
+        if ($annonce != true){
 
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
+            $building = new Building();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($building);
             $entityManager->flush();
+            echo 'suppresion en cours';
 
             return $this->redirectToRoute('index');
+        } else {
+            echo 'Pas d\'annonce a supprimé';
         }
 
-        return $this->render('building/delete.html.twig');
+        
+
+        return $this->render('building/delete.html.twig',[
+            'id' => $id,
+        ]);
     }
 }
